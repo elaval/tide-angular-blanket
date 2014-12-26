@@ -1,0 +1,28 @@
+{
+  "name": "tide-angular-blanket",
+  "version": "0.0.1",
+  "authors": [
+    "Ernesto Laval <ernesto.laval@gmail.com>"
+  ],
+  "description": "Angular directives for visual representations of bar charts that are transfromed into blenkets (area charts)",
+  "main": "tide-angular-blanket.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "data",
+    "visualization",
+    "chilecompra"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "tide-angular": "latest"  
+  }
+}
