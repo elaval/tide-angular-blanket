@@ -5,11 +5,21 @@ Tide-Angular directive for displaying curves that represent frequencies of metri
 
 i) Bar: horizintal bars for each category representing the average score for the category
 ![alt text](image2-bars.png "Bars")
+
 ii) Parallel curves: parallel area charts - for each category -  that represent the frequency of dubjects with each score
 ![alt text](image1-parallel.png "Bars")
+
 iii) Stacked curves: similar to parallel curves but curves are stacked one on top of the other
 ![alt text](image3-stacked.png "Bars")
 
-Inline-style: 
-![alt text](image.png "Logo Title Text 1")
-
+Data input:
+```javascript
+[
+{"category":"A", "x": 200, "size": 5},
+{"category":"A", "x": 210, "size": 23},
+...
+{"category":"B", "x": 200, "size": 1},
+{"category":"B", "x": 210, "size": 17},
+...
+]
+```
