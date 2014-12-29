@@ -12,16 +12,16 @@ subjects for different values of the measurement attribute</p>
   ...
 
   this.data = [
-   {category=&#39;A&#39;, measurement:&quot;100&quot;, amount:&quot;1324&quot;}, 
-   {category=&#39;A&#39;, measurement:&quot;110&quot;, amount:&quot;2543&quot;},
-   {category=&#39;B&#39;, measurement:&quot;100&quot;, amount:&quot;432&quot;},
-   {category=&#39;C&#39;, measurement:&quot;110&quot;, amount:&quot;654&quot;}
+   {category=&#39;A&#39;, x:&quot;100&quot;, size:&quot;1324&quot;}, 
+   {category=&#39;A&#39;, x:&quot;110&quot;, size:&quot;2543&quot;},
+   {category=&#39;B&#39;, x:&quot;100&quot;, size:&quot;432&quot;},
+   {category=&#39;C&#39;, x:&quot;110&quot;, size:&quot;654&quot;}
   ];
 
   var layout =  tdBlanketLayout()
     .categoryAttribute(&quot;category&quot;)
-    .measurementAttribute(&quot;measurement&quot;)
-    .amountAttribute(&quot;amount&quot;);
+    .xAttribute(&quot;x&quot;)
+    .sizeAttribute(&quot;size&quot;);
 
   var nodes = layout.nodes(data);
 
@@ -44,4 +44,47 @@ subjects for different values of the measurement attribute</p>
  }
 ]
 </code></pre></div></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_categories">categories(data)</h3>
+<div class="categories"><h5 id="methods_categories_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>data</td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tide-angular-tdblanketlayout-categories-page"><p>Input data Array</p>
+</div></td></tr></tbody></table><h5 id="methods_categories_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tide-angular-tdblanketlayout-categories-page"><p>List of categories</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_categoryattribute">categoryAttribute(_)</h3>
+<div class="categoryattribute"><h5 id="methods_categoryattribute_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>_</td><td><a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-null">null</a></td><td><div class="tide-angular-tdblanketlayout-categoryattribute-page"><p>Name of the category attribute (if null gets the current name)</p>
+</div></td></tr></tbody></table><h5 id="methods_categoryattribute_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string|object</a></td><td><div class="tide-angular-tdblanketlayout-categoryattribute-page"><p>Name of the current attribute or the layout object</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_maxyaccumulated">maxYAccumulated(data)</h3>
+<div class="maxyaccumulated"><h5 id="methods_maxyaccumulated_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>data</td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tide-angular-tdblanketlayout-maxyaccumulated-page"><p>Input data Array</p>
+</div></td></tr></tbody></table><h5 id="methods_maxyaccumulated_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="tide-angular-tdblanketlayout-maxyaccumulated-page"><p>Max Y Value (accumulated)</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_maxynonaccumulated">maxYNonAccumulated(data)</h3>
+<div class="maxynonaccumulated"><h5 id="methods_maxynonaccumulated_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>data</td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tide-angular-tdblanketlayout-maxynonaccumulated-page"><p>Input data Array</p>
+</div></td></tr></tbody></table><h5 id="methods_maxynonaccumulated_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="tide-angular-tdblanketlayout-maxynonaccumulated-page"><p>Max Y Value (not accumulated)</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_nodes">nodes(data)</h3>
+<div class="nodes"><h5 id="methods_nodes_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>data</td><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tide-angular-tdblanketlayout-nodes-page"><p>Array with datapints [{&quot;x&quot;:110, &quot;size&quot;:17, &quot;category&quot;:&quot;A&quot;},...]</p>
+</div></td></tr></tbody></table><h5 id="methods_nodes_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tide-angular-tdblanketlayout-nodes-page"><p>Array with nodes that with information for each category curves [{category:&#39;A&#39;, data:[{x=100, dy=1324, basey=0},...]}, ...]</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_sizeattribute">sizeAttribute(_)</h3>
+<div class="sizeattribute"><h5 id="methods_sizeattribute_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>_</td><td><a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-null">null</a></td><td><div class="tide-angular-tdblanketlayout-sizeattribute-page"><p>Name of the size attribute (if null gets the current name)</p>
+</div></td></tr></tbody></table><h5 id="methods_sizeattribute_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string|object</a></td><td><div class="tide-angular-tdblanketlayout-sizeattribute-page"><p>Name of the current attribute or the layout object</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_sortcriteria">sortCriteria(_)</h3>
+<div class="sortcriteria"><h5 id="methods_sortcriteria_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>_</td><td><a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-null">null</a></td><td><div class="tide-angular-tdblanketlayout-sortcriteria-page"><p>sortCriteria function (if null gets the current function)</p>
+</div></td></tr></tbody></table><h5 id="methods_sortcriteria_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string|object</a></td><td><div class="tide-angular-tdblanketlayout-sortcriteria-page"><p>Current function or the layout object</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_xattribute">xAttribute(_)</h3>
+<div class="xattribute"><h5 id="methods_xattribute_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>_</td><td><a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-null">null</a></td><td><div class="tide-angular-tdblanketlayout-xattribute-page"><p>Name of the x attribute (if null gets the current name)</p>
+</div></td></tr></tbody></table><h5 id="methods_xattribute_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string|object</a></td><td><div class="tide-angular-tdblanketlayout-xattribute-page"><p>Name of the current attribute or the layout object</p>
+</div></td></tr></table></div>
+</li>
+</ul>
+</div>
 </div>

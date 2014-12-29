@@ -19,7 +19,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "tide-angular",
       "shortDescription": "Helper service to calculate coordinates for set of area shapes that represent an histogram of ",
-      "keywords": "amount amountattribute angular api area attribute basey calculate category categoryattribute coordinates data directive dy example format function helper histogram js layout measurement measurementattribute module nodes output represent service set shapes subjects tdblanket tdblanketlayout tide-angular values var"
+      "keywords": "accummulation accumulated angular api area array attribute basey calculate categories category categoryattribute coordinates criteria current curves data datapints defines directive dy example format function helper histogram input js layout list max maximum maxyaccumulated maxynonaccumulated measurement module nodes null object output represent service set sets shapes size sizeattribute sort sortcriteria subjects tdblanket tdblanketlayout tide-angular values var xattribute"
     }
   ],
   "apis": {

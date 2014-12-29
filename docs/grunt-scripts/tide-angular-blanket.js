@@ -100,6 +100,8 @@ angular.module("tide-angular")
  
         var colorScale = d3.scale.category10();
 
+        var sortCriteria = scope.sortCriteria ? scope.sortCriteria : function(d) {return d};
+
         // Define dataPoints tooltip generator
         var dataPointTooltip = tooltip();
         if (scope.tooltipMessage) {
@@ -166,9 +168,9 @@ angular.module("tide-angular")
 
             var layout = tdBlanketLayout
               .categoryAttribute(scope.categoryAttribute)
-              .measurementAttribute(scope.xAttribute)
-              .amountAttribute(scope.sizeAttribute)
-              //.sortCriteria(scope.sortCriteria)
+              .xAttribute(scope.xAttribute)
+              .sizeAttribute(scope.sizeAttribute)
+              .sortCriteria(sortCriteria)
 
             var nodes = layout.nodes(data);
 
@@ -448,16 +450,16 @@ angular.module("tide-angular")
 *   ...
 *
 *   this.data = [
-*    {category='A', measurement:"100", amount:"1324"}, 
-*    {category='A', measurement:"110", amount:"2543"},
-*    {category='B', measurement:"100", amount:"432"},
-*    {category='C', measurement:"110", amount:"654"}
+*    {category='A', x:"100", size:"1324"}, 
+*    {category='A', x:"110", size:"2543"},
+*    {category='B', x:"100", size:"432"},
+*    {category='C', x:"110", size:"654"}
 *   ];
 *  
 *   var layout =  tdBlanketLayout()
 *     .categoryAttribute("category")
-*     .measurementAttribute("measurement")
-*     .amountAttribute("amount");
+*     .xAttribute("x")
+*     .sizeAttribute("size");
 *    
 *   var nodes = layout.nodes(data);
 *
@@ -486,17 +488,20 @@ angular.module("tide-angular")
 angular.module("tide-angular")
 .service("tdBlanketLayout", [function() {
   var self = this;
-  var measurementAttribute = "x"
+  var xAttribute = "x"
   var categoryAttribute = "category"
-  var amountAttribute = "size"
+  var sizeAttribute = "size"
 
   var sortCriteria = function(d) {
      return d
   }
 
   /**
-  * Calculates coordinates (x, dy, basey) for a group of area charts that can be stacked
-  * each area chart is associated to a category in the data objects
+  * @ngdoc nodes
+  * @name tide-angular.tdBlanketLayout#nodes 
+  * @methodOf tide-angular.service:tdBlanketLayout
+  * @param {array} data  Array with datapints [{"x":110, "size":17, "category":"A"},...]
+  * @returns {array} Array with nodes that with information for each category curves [{category:'A', data:[{x=100, dy=1324, basey=0},...]}, ...]
   */
   this.nodes = function(data) {
     var categories = listCategories(data);
@@ -537,49 +542,87 @@ angular.module("tide-angular")
       size = _;
       return this;
   }
-  // Consulta o modifica el atributa utilizado para la medida en el histograma
-  this.measurementAttribute = function(_) {
-    if(!arguments.length) return measurementAttribute;
-    measurementAttribute = _;
+
+  /**
+  * @ngdoc xAttribute Sets or gets the name of the x attribute used in the histogram
+  * @name tide-angular.tdBlanketLayout#xAttribute 
+  * @methodOf tide-angular.service:tdBlanketLayout
+  * @param {string|null} _  Name of the x attribute (if null gets the current name)
+  * @returns {string|object} Name of the current attribute or the layout object
+  */
+  this.xAttribute = function(_) {
+    if(!arguments.length) return xAttribute;
+    xAttribute = _;
     return this;
   },
 
-  // Consulta o modifica el atributa utilizado para la categoría que agrupa distintos mantos
+  /**
+  * @ngdoc categoryAttribute Sets or gets the name of the category attribute used in the histogram
+  * @name tide-angular.tdBlanketLayout#categoryAttribute 
+  * @methodOf tide-angular.service:tdBlanketLayout
+  * @param {string|null} _  Name of the category attribute (if null gets the current name)
+  * @returns {string|object} Name of the current attribute or the layout object
+  */
   this.categoryAttribute = function(_) {
     if(!arguments.length) return categoryAttribute;
     categoryAttribute = _;
     return this;
   },
 
-  // Consulta o modifica el atributa utilizado para la camntidad de sujetos por medida
-  this.amountAttribute = function(_) {
-    if(!arguments.length) return amountAttribute;
-    amountAttribute = _;
+  /**
+  * @ngdoc sizeAttribute Sets or gets the name of the size attribute used in the histogram
+  * @name tide-angular.tdBlanketLayout#sizeAttribute 
+  * @methodOf tide-angular.service:tdBlanketLayout
+  * @param {string|null} _  Name of the size attribute (if null gets the current name)
+  * @returns {string|object} Name of the current attribute or the layout object
+  */
+  this.sizeAttribute = function(_) {
+    if(!arguments.length) return sizeAttribute;
+    sizeAttribute = _;
     return this;
   },
 
-  // Consulta o modifica el atributa utilizado para la camntidad de sujetos por medida
+  /**
+  * @ngdoc sortCriteria Sets or gets the name of the function that defines the sort criteria
+  * @name tide-angular.tdBlanketLayout#sortCriteria 
+  * @methodOf tide-angular.service:tdBlanketLayout
+  * @param {string|null} _  sortCriteria function (if null gets the current function)
+  * @returns {string|object} Current function or the layout object
+  */
   this.sortCriteria = function(_) {
     if(!arguments.length) return sortCriteria;
     sortCriteria = _;
     return this;
   },
 
-
+  /**
+  * @ngdoc maxYAccumulated Gets the maximum size value that results from the accummulation of all categories
+  * @name tide-angular.tdBlanketLayout#maxYAccumulated 
+  * @methodOf tide-angular.service:tdBlanketLayout
+  * @param {Array} data Input data Array
+  * @returns {number} Max Y Value (accumulated)
+  */
   this.maxYAccumulated = function(data) {
     var accumulatedValues = {}
     var categories = listCategories(data);
 
     _.each(data, function(d) {
-      var prevValue = accumulatedValues[d[measurementAttribute]];
-      var newValue =  prevValue? prevValue + parseFloat(d[amountAttribute]): parseFloat(d[amountAttribute]);
-      accumulatedValues[d[measurementAttribute]] = newValue;
+      var prevValue = accumulatedValues[d[xAttribute]];
+      var newValue =  prevValue? prevValue + parseFloat(d[sizeAttribute]): parseFloat(d[sizeAttribute]);
+      accumulatedValues[d[xAttribute]] = newValue;
     })
 
     return _.max(_.values(accumulatedValues));
 
   };
 
+  /**
+  * @ngdoc maxYNonAccumulated Gets the maximum size value for any of the categories (not accumulated)
+  * @name tide-angular.tdBlanketLayout#maxYNonAccumulated 
+  * @methodOf tide-angular.service:tdBlanketLayout
+  * @param {Array} data Input data Array
+  * @returns {number} Max Y Value (not accumulated)
+  */
   this.maxYNonAccumulated = function(data) {
     var groupedData = _.groupBy(data, function(d) {return d[categoryAttribute]});
 
@@ -596,9 +639,13 @@ angular.module("tide-angular")
 
   };
 
-
-
-
+  /**
+  * @ngdoc categories Gets list of (sorted) categories
+  * @name tide-angular.tdBlanketLayout#categories 
+  * @methodOf tide-angular.service:tdBlanketLayout
+  * @param {Array} data Input data Array
+  * @returns {Array} List of categories
+  */
   this.categories = function(data) {
     return _.sortBy(listCategories(data), sortCriteria);
   };
@@ -615,11 +662,11 @@ angular.module("tide-angular")
 
     // Agrega suma de monto*medida
     var agregation = _.reduce(categorydata, function(memo,d) {
-        return memo + parseInt(d[amountAttribute])*parseInt(d[measurementAttribute]);
+        return memo + parseInt(d[sizeAttribute])*parseInt(d[xAttribute]);
     },0)
 
     var totalamount = _.reduce(categorydata, function(memo,d) {
-        return memo + parseInt(d[amountAttribute]);
+        return memo + parseInt(d[sizeAttribute]);
     },0)
 
     return agregation/totalamount;
@@ -632,13 +679,13 @@ angular.module("tide-angular")
 
     // Agrupa los datos en un objeto según el puntaje SIMCE 
     var groupeddata = _.groupBy(filtereddata, function(d) {
-      return d[measurementAttribute];
+      return d[xAttribute];
     });
 
     // Calcula la cantidad total de individuos para cada valor
     _.each(_.keys(groupeddata), function(key) {
       groupeddata[key] = _.reduce(groupeddata[key], function(memo,d) {
-        return memo + parseInt(d[amountAttribute])
+        return memo + parseInt(d[sizeAttribute])
       },0)
     })
 
