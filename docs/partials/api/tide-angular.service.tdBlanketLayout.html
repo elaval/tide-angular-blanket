@@ -1,0 +1,47 @@
+<h1><code ng:non-bindable="">tdBlanketLayout</code>
+<div><span class="hint">service in module <code ng:non-bindable="">tide-angular</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tide-angular-service-page tide-angular-service-tdblanketlayout-page"><p>Helper service to calculate coordinates for set of area shapes that represent an histogram of 
+subjects for different values of the measurement attribute</p>
+<h4 id="description_example">Example:</h4>
+<pre><code class="lang-js">angular.module(&quot;tide-angular&quot;)
+.directive(&quot;tdBlanket&quot;,[&#39;tdBlanketLayout&#39;,function (tdBlanketLayout) {
+  ...
+
+  this.data = [
+   {category=&#39;A&#39;, measurement:&quot;100&quot;, amount:&quot;1324&quot;}, 
+   {category=&#39;A&#39;, measurement:&quot;110&quot;, amount:&quot;2543&quot;},
+   {category=&#39;B&#39;, measurement:&quot;100&quot;, amount:&quot;432&quot;},
+   {category=&#39;C&#39;, measurement:&quot;110&quot;, amount:&quot;654&quot;}
+  ];
+
+  var layout =  tdBlanketLayout()
+    .categoryAttribute(&quot;category&quot;)
+    .measurementAttribute(&quot;measurement&quot;)
+    .amountAttribute(&quot;amount&quot;);
+
+  var nodes = layout.nodes(data);
+
+  ...
+}]);
+</code></pre>
+<h4 id="description_output-data-format">output data format (nodes):</h4>
+<pre><code>[
+ {category:&#39;A&#39;, 
+  data:[
+    {x=100, dy=1324, basey=0},
+    {x=110, dy=2543, basey=0}
+  ]
+ },
+ {category:&#39;B&#39;, 
+  data:[
+    {x=100, dy=432, basey=1324},
+    {x=110, dy=654, basey=2543}
+  ]
+ }
+]
+</code></pre></div></div>
+</div>

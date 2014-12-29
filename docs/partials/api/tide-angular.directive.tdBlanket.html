@@ -1,0 +1,62 @@
+<h1><code ng:non-bindable="">tdBlanket</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">tide-angular</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tide-angular-directive-page tide-angular-directive-tdblanket-page"><p>Generates charts to represent frequency of subjects with certain score (x attribute)</p>
+<h4 id="description_consider-the-following-example">Consider the following example:</h4>
+<pre><code class="lang-html"> &lt;div td-blanket 
+  td-data=&quot;controller.data&quot; 
+  td-category-attribute=&quot;&#39;category&#39;&quot; 
+  td-x-attribute=&quot;&#39;x&#39;&quot; 
+  td-size-attribute=&quot;&#39;size&#39;&quot; 
+  td-sort-criteria=&quot;controller.sortCriteria&quot; 
+  td-chart-type=&quot;controller.chartType&quot; 
+  td-x-label=&quot;&#39;SIMCE&#39;&quot; 
+  td-y-label=&quot;&#39;Grupo de asistencia&#39;&quot;&gt;
+ &lt;/div&gt;
+</code></pre>
+<pre><code class="lang-js">[inside &quot;controller&quot;]
+this.data = [
+ {&quot;category&quot;:&quot;A&quot;, &quot;x&quot;: 200, &quot;size&quot;: 5},
+ {&quot;category&quot;:&quot;A&quot;, &quot;x&quot;: 210, &quot;size&quot;: 23},
+ ...
+ {&quot;category&quot;:&quot;B&quot;, &quot;x&quot;: 200, &quot;size&quot;: 1},
+ {&quot;category&quot;:&quot;B&quot;, &quot;x&quot;: 210, &quot;size&quot;: 17},
+ ...
+
+];
+
+this.sortCriteria = function(d) {return d};
+this.chartType = &quot;parallel curves&quot;;
+</code></pre>
+</div></div>
+<h2 id="dependencies">Dependencies</h2>
+<ul class="dependencies"><li><code ng:non-bindable=""><a href="#/api/tide-angular">tide-angular</a></code>
+</li>
+<li><code ng:non-bindable=""><a href="#/api/tide-angular.service:tdBlanketLayout">tdBlanketLayout</a></code>
+</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<div class="usage">as attribute<pre class="prettyprint linenums">&lt;div td-blanket
+     td-data="{array}"
+     td-category-attribute="{string}"
+     td-x-attribute="{string}"
+     td-size-attribute="{string}"
+     td-sort-criteria="{function}"
+     td-chart-type="{string}"
+     td-x-label="{string}"
+     td-y-label="{string}"&gt;
+   ...
+&lt;/div&gt;</pre>
+<h4 id="usage_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tdData</td><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tide-angular-directive-page tide-angular-directive-tdblanket-page"><p>Data array used for populating the chart</p>
+</div></td></tr><tr><td>tdCategoryAttribute</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tide-angular-directive-page tide-angular-directive-tdblanket-page"><p>Name of the attribute used for the X values in data objects</p>
+</div></td></tr><tr><td>tdXAttribute</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tide-angular-directive-page tide-angular-directive-tdblanket-page"><p>Name of the attribute used for the X values in data objects</p>
+</div></td></tr><tr><td>tdSizeAttribute</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tide-angular-directive-page tide-angular-directive-tdblanket-page"><p>Name of the attribute used for defining the size of the bubbles</p>
+</div></td></tr><tr><td>tdSortCriteria</td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="tide-angular-directive-page tide-angular-directive-tdblanket-page"><p>Function used to define sort order of categories.  Receives a category name and returns a string/number used for the rigth sort order</p>
+</div></td></tr><tr><td>tdChartType</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tide-angular-directive-page tide-angular-directive-tdblanket-page"><p>Type of chart to be displayed (&quot;bars&quot;, &quot;parallel curves&quot;, &quot;stacked curves&quot;)</p>
+</div></td></tr><tr><td>tdXLabel</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tide-angular-directive-page tide-angular-directive-tdblanket-page"><p>Label that describes variable used for x Axis (scores)</p>
+</div></td></tr><tr><td>tdYLabel</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tide-angular-directive-page tide-angular-directive-tdblanket-page"><p>Label that describes variable used for y Axis (categories)</p>
+</div></td></tr></tbody></table></div>
+</div>
