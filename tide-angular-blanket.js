@@ -100,6 +100,8 @@ angular.module("tide-angular")
  
         var colorScale = d3.scale.category10();
 
+        var sortCriteria = scope.sortCriteria ? scope.sortCriteria : function(d) {return d};
+
         // Define dataPoints tooltip generator
         var dataPointTooltip = tooltip();
         if (scope.tooltipMessage) {
@@ -168,7 +170,7 @@ angular.module("tide-angular")
               .categoryAttribute(scope.categoryAttribute)
               .measurementAttribute(scope.xAttribute)
               .amountAttribute(scope.sizeAttribute)
-              //.sortCriteria(scope.sortCriteria)
+              .sortCriteria(sortCriteria)
 
             var nodes = layout.nodes(data);
 
