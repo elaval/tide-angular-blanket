@@ -14,7 +14,7 @@ iii) Stacked curves: similar to parallel curves but curves are stacked one on to
 
 Documentation:
 -----------------
-[Documentation](./docs/index.html)
+[Documentation](http://cdn.rawgit.com/elaval/tide-angular-blanket/master/docs/index.html#/api/tide-angular.service:tdBlanketLayout)
 
 
 ```javascript
