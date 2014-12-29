@@ -12,8 +12,11 @@ ii) Parallel curves: parallel area charts - for each category -  that represent 
 iii) Stacked curves: similar to parallel curves but curves are stacked one on top of the other
 ![alt text](image3-stacked.png "Bars")
 
-Input data format:
+Documentation:
 -----------------
+[Documentation](./docs/index.html)
+
+
 ```javascript
 [
 {"category":"A", "x": 200, "size": 5},
